@@ -1,6 +1,8 @@
 package firstHomework;
 
 
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,9 +10,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
-public class FirstClass {
+public class FindArticle {
 
     private final String HOMEPAGE = "http://rus.delfi.lv/";
+
+    private String articleName = "Школы переводят";
+
 
     @Test
     public void openWebsite() {
@@ -24,16 +29,14 @@ public class FirstClass {
         chrome.get(HOMEPAGE);
 
 
-        String articleName = "Латвия согласует";
-
         WebElement element = chrome.findElement(By.partialLinkText(articleName));
 
-        element.click();
+        String fullArticleName = element.getText();
 
-
-        chrome.close();
+        Assert.assertTrue(fullArticleName.contains(articleName));
 
 
     }
+
 
 }
