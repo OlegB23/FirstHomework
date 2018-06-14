@@ -17,7 +17,7 @@ public class FindArticle {
 
     private final String HOMEPAGE = "http://rus.delfi.lv/";
 
-    private String articleName = "Синоптики обещают";
+    private String articleName = "Во время учений";
 
 
 
