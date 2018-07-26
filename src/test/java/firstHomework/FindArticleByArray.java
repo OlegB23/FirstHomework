@@ -25,7 +25,6 @@ public class FindArticleByArray {
     public void createDriver() {
 
         System.setProperty("webdriver.chrome.driver", "/Users/oleg/Desktop/QA2/Drivers/chromedriver");
-
         chrome = new ChromeDriver();
     }
 
@@ -34,19 +33,14 @@ public class FindArticleByArray {
     public void searchArticleByArray() {
 
         chrome.manage().window().maximize();
-
         chrome.get(HOME_PAGE);
-
         List<WebElement> articleNames = new ArrayList<WebElement>();
-
         articleNames = chrome.findElements(ARTICLE_TITLES);
-
         boolean articleIsFound = false;
 
         for (int i = 0; i < articleNames.size(); i++) {
 
             if (articleNames.get(i).getText().equals(SEARCHED_ARTICLE)) {
-
                 articleIsFound = true;
                 break;
             }
