@@ -16,16 +16,9 @@ public class FindArticleByArray {
 
     WebDriver chrome;
 
-    public final String HOMEPAGE = "http://rus.delfi.lv";
-
-    //To find an article using xPath option. Need full article name in SEARCHEDARTICLE.
-    // In IF expression .contains can be changed by .equals
-    //public final By ARTICLETITLES = By.xpath(".//*[@class='top2012-title']");
-
-    public final String SEARCHEDARTICLE = "В Москве открыли ЧМ с участием Путина";
-
-    public final By ARTICLETITLES = By.partialLinkText(SEARCHEDARTICLE);
-
+    public final String HOME_PAGE = "http://rus.delfi.lv";
+    public final By ARTICLE_TITLES = By.xpath(".//*[@class='top2012-title']");
+    public final String SEARCHED_ARTICLE = "В Москве открыли ЧМ с участием Путина";
 
     @Before
 
@@ -34,19 +27,7 @@ public class FindArticleByArray {
         System.setProperty("webdriver.chrome.driver", "/Users/oleg/Desktop/QA2/Drivers/chromedriver");
 
         chrome = new ChromeDriver();
-
-
     }
-
-
-    @After
-
-    public void closeBrowser() {
-
-        chrome.close();
-
-    }
-
 
     @Test
 
@@ -54,30 +35,28 @@ public class FindArticleByArray {
 
         chrome.manage().window().maximize();
 
-        chrome.get(HOMEPAGE);
+        chrome.get(HOME_PAGE);
 
         List<WebElement> articleNames = new ArrayList<WebElement>();
 
-        articleNames = chrome.findElements(ARTICLETITLES);
+        articleNames = chrome.findElements(ARTICLE_TITLES);
 
         boolean articleIsFound = false;
 
         for (int i = 0; i < articleNames.size(); i++) {
 
-            if (articleNames.get(i).getText().contains(SEARCHEDARTICLE)) {
+            if (articleNames.get(i).getText().equals(SEARCHED_ARTICLE)) {
 
                 articleIsFound = true;
                 break;
-
-
             }
-
         }
-
         Assert.assertTrue("No article found", articleIsFound);
-
-
     }
 
+    @After
 
+    public void closeBrowser() {
+        chrome.close();
+    }
 }
